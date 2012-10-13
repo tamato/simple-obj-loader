@@ -46,9 +46,10 @@ struct vert_less {
 };
 
 ObjLoader::ObjLoader()
+    : TexCoordLayers(1)
 {
-}
 
+}
 
 void ObjLoader::load(char* filename)
 {
