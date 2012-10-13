@@ -1,0 +1,11 @@
+A simple obj file loader.
+
+Does not mess with mtl loading.
+
+Benefits:
+
+If the file holds quad it will convert them to triangles
+
+remaps loaded positions/normals/texcoords into a unique set of vertices to be used right away.
+
+returns the positions/normals/texcoords as seperate float arrays so there is no need to convert form a custom data type to your data type.
