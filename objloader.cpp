@@ -36,11 +36,11 @@ struct FaceVert
 struct vert_less {
     bool operator() (const FaceVert& lhs, const FaceVert& rhs) const
     {
-        const unsigned int prime1 = 73856093;
-        const unsigned int prime2 = 19349663;
-        const unsigned int prime3 = 83492791;
-        unsigned int lh = (lhs.vert * prime1) ^ (lhs.norm * prime2) ^ (lhs.coord * prime3);
-        unsigned int rh = (rhs.vert * prime1) ^ (rhs.norm * prime2) ^ (rhs.coord * prime3);
+        const unsigned long prime1 = 73856093;
+        const unsigned long prime2 = 19349663;
+        const unsigned long prime3 = 83492791;
+        unsigned long lh = (lhs.vert * prime1) ^ (lhs.norm * prime2) ^ (lhs.coord * prime3);
+        unsigned long rh = (rhs.vert * prime1) ^ (rhs.norm * prime2) ^ (rhs.coord * prime3);
         return lh < rh;
     }
 };
@@ -202,14 +202,14 @@ void ObjLoader::load(char* filename)
 
         Positions[iter->second] = verts[iter->first.vert];
 
-        if (norms.size() > 0) {
+        if ( norms.size() > 0 ) {
             Normals[iter->second] = norms[iter->first.norm];
         }
 
-        if (texcoords.size() > 0) {
+        if ( texcoords.size() > 0) {
             TexCoords[iter->second] = texcoords[iter->first.coord];
         }
-    }
+    }    
 }
 
 int ObjLoader::getIndexCount()
