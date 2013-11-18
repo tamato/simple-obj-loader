@@ -36,12 +36,18 @@ struct FaceVert
 struct vert_less {
     bool operator() (const FaceVert& lhs, const FaceVert& rhs) const
     {
-        const unsigned long prime1 = 73856093;
-        const unsigned long prime2 = 19349663;
-        const unsigned long prime3 = 83492791;
-        unsigned long lh = (lhs.vert * prime1) ^ (lhs.norm * prime2) ^ (lhs.coord * prime3);
-        unsigned long rh = (rhs.vert * prime1) ^ (rhs.norm * prime2) ^ (rhs.coord * prime3);
-        return lh < rh;
+        // handle any size mesh
+        if (lhs.vert != rhs.vert) return (lhs.vert<rhs.vert);
+        if (lhs.norm != rhs.norm) return (lhs.norm<rhs.norm);
+        if (lhs.coord!=rhs.coord) return (lhs.coord<rhs.coord);
+        return false;
+        // the following breaks down on very large meshes
+        // const unsigned long prime1 = 73856093;
+        // const unsigned long prime2 = 19349663;
+        // const unsigned long prime3 = 83492791;
+        // unsigned long lh = (lhs.vert * prime1) ^ (lhs.norm * prime2) ^ (lhs.coord * prime3);
+        // unsigned long rh = (rhs.vert * prime1) ^ (rhs.norm * prime2) ^ (rhs.coord * prime3);
+        // return lh < rh;
     }
 };
 
